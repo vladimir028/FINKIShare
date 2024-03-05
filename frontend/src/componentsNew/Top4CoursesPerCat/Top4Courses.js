@@ -1,15 +1,11 @@
-// import logo from './logo.svg';
-import '../App.css';
-import NavigationBar from "../components/NavigationBar";
-import Sidebar from "../components/Sidebar";
-import Home from "../components/Home";
-import {Col, Row} from "react-bootstrap";
-import CardComponent from "../components/CardComponent";
+import CardComponent from "../Courses/CardComponent"
 import React, {useEffect, useState} from "react";
-import "./SelectPage.module.css";
-import {type} from "@testing-library/user-event/dist/type";
+import { Container, Row, Col } from "react-bootstrap";
 
-function SelectPage() {
+
+
+export default function Top4Courses({category}){
+
 
     const [subjects, setSubjects] = useState([]);
 
@@ -31,23 +27,25 @@ function SelectPage() {
             });
     }, []);
 
-    return (
-        <div className="App">
-            <NavigationBar></NavigationBar>
 
-            <Row>
-                {Object.values(subjects).map(item => (
+    return (
+
+     
+        <Container className="mt-5">
+                <Row>
+                {Object.values(subjects)
+                .filter(item => category.some(cat => item["subjectTitle"].includes(cat)))
+                // .sort(() => Math.random() - 0.5)
+                .slice(0,4)
+                .map(item => (
                     <Col key={item.url} xs={12} sm={6} md={4} lg={3}>
+                        {console.log({category})}
                         <CardComponent
                             subject={item}
                         />
                     </Col>
                 ))}
             </Row>
-
-
-        </div>
+                </Container>
     );
 }
-
-export default SelectPage;
