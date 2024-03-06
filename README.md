@@ -1,2 +1,3 @@
 # FINKI Share
-Веб апликација за сподеување на материјали за студенти на ФИНКИ.
+Web Application for students to share computer science materials
+(in progress)
